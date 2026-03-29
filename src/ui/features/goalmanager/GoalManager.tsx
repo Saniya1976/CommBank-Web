@@ -95,6 +95,12 @@ export function GoalManager(props: Props) {
     updateGoalApi(props.goal.id, updatedGoal)
   }
 
+  const pickEmojiOnClick = (emoji: BaseEmoji, event: React.MouseEvent) => {
+    updateIcon(emoji.native)
+    setIsPickerOpen(false)
+  }
+
+
   return (
     <GoalManagerContainer>
       <TopContainer>
@@ -120,10 +126,7 @@ export function GoalManager(props: Props) {
           <>
             <Backdrop onClick={() => setIsPickerOpen(false)} />
             <EmojiPickerContainer>
-              <EmojiPicker onClick={(emoji: BaseEmoji) => {
-                updateIcon(emoji.native)
-                setIsPickerOpen(false)
-              }} />
+              <EmojiPicker onClick={pickEmojiOnClick} />
             </EmojiPickerContainer>
           </>
         )}
@@ -159,6 +162,7 @@ export function GoalManager(props: Props) {
     </GoalManagerContainer>
   )
 }
+
 
 type FieldProps = { name: string; icon: IconDefinition }
 
